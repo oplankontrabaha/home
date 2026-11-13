@@ -1,0 +1,1427 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Oplan Kontra Baha — Home</title>
+
+<script>
+  document.documentElement.classList.add('fonts-loading');
+</script>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700&family=Barlow+Semi+Condensed:wght@500;600;700&family=Inter:wght@400;500;600&display=block" rel="stylesheet">
+
+<script>
+  (function(){
+
+    var root = document.documentElement;
+
+    function showFinalFonts(){
+      root.classList.remove('fonts-loading');
+    }
+
+    if(document.fonts && document.fonts.load){
+
+      Promise.all([
+        document.fonts.load('700 68px "Barlow Condensed"'),
+        document.fonts.load('600 13px "Barlow Semi Condensed"')
+      ]).then(showFinalFonts,showFinalFonts);
+
+    }else{
+
+      window.addEventListener('load',showFinalFonts,{once:true});
+    }
+
+  })();
+</script>
+
+<style>
+  :root{
+    --orange:#F26522;
+    --orange-bright:#FF7A33;
+    --orange-deep:#d34e12;
+    --blue:#0D47A1;
+    --blue-deep:#082c66;
+    --navy:#061d43;
+    --ink:#122238;
+    --muted:#5c6b82;
+    --line:#dfe5ee;
+    --paper:#f4f6fa;
+    --card:#ffffff;
+    --shadow:0 1px 2px rgba(6,29,67,.06),0 10px 30px rgba(6,29,67,.07);
+    --shadow-hi:0 4px 10px rgba(6,29,67,.10),0 22px 48px rgba(13,71,161,.16);
+  }
+
+  *{box-sizing:border-box}
+
+  html,body{margin:0}
+
+  body{
+    font-family:"Inter",system-ui,-apple-system,Segoe UI,Roboto,sans-serif;
+    color:var(--ink);
+    background:var(--paper);
+    background-image:
+      radial-gradient(1200px 500px at 88% -10%, rgba(13,71,161,.06), transparent 60%),
+      radial-gradient(900px 420px at -8% 0%, rgba(242,101,34,.05), transparent 55%);
+    -webkit-font-smoothing:antialiased;
+    text-rendering:optimizeLegibility;
+    min-height:100vh;
+  }
+
+  a{color:inherit;text-decoration:none}
+
+  html.fonts-loading .masthead,
+  html.fonts-loading .band{
+    visibility:hidden;
+  }
+
+  .wrap{
+    max-width:1080px;
+    margin:0 auto;
+    padding:0 22px;
+    position:relative;
+    z-index:1;
+  }
+
+  /* ---------- Floating logo backdrop ---------- */
+
+  #bg{
+    position:fixed;
+    inset:0;
+    z-index:0;
+    overflow:hidden;
+    pointer-events:none;
+  }
+
+  .floaty{
+    position:absolute;
+    top:0;
+    left:0;
+    opacity:0;
+    pointer-events:none;
+    user-select:none;
+    -webkit-user-drag:none;
+    will-change:transform,opacity,width;
+    filter:saturate(1.05);
+  }
+
+  /* ---------- Masthead ---------- */
+
+  .masthead{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:16px;
+    padding:20px 0 16px;
+    opacity:0;
+    transform:translateY(-8px);
+    animation:drop .6s cubic-bezier(.2,.7,.2,1) .05s forwards;
+  }
+
+  .crest{
+    display:flex;
+    align-items:center;
+    gap:14px;
+    min-width:0;
+  }
+
+  .crest img{
+    height:56px;
+    width:auto;
+    display:block;
+  }
+
+  .crest .sep{
+    width:1px;
+    height:40px;
+    background:var(--line);
+  }
+
+  .agency{
+    line-height:1.15;
+    min-width:0;
+  }
+
+  .agency .r{
+    font-family:"Barlow Semi Condensed";
+    font-weight:600;
+    font-size:13px;
+    letter-spacing:.14em;
+    text-transform:uppercase;
+    color:var(--blue);
+  }
+
+  .agency .s{
+    font-size:11.5px;
+    color:var(--muted);
+    letter-spacing:.04em;
+    white-space:nowrap;
+    overflow:hidden;
+    text-overflow:ellipsis;
+  }
+
+  /* ---------- Hero band ---------- */
+
+  .band{
+    position:relative;
+    overflow:hidden;
+    border-radius:16px;
+    margin-top:6px;
+    background:linear-gradient(
+      135deg,
+      var(--navy) 0%,
+      var(--blue-deep) 55%,
+      var(--blue) 100%
+    );
+    color:#fff;
+    box-shadow:var(--shadow);
+    opacity:0;
+    transform:translateY(10px);
+    animation:rise .7s cubic-bezier(.2,.7,.2,1) .18s forwards;
+  }
+
+  .band .inner{
+    padding:25px 34px 22px;
+    position:relative;
+    z-index:2;
+  }
+
+  .eyebrow{
+    font-family:"Barlow Semi Condensed";
+    font-weight:600;
+    font-size:13px;
+    letter-spacing:.24em;
+    text-transform:uppercase;
+    color:#cfe0ff;
+    margin:0 0 7px;
+    opacity:0;
+    animation:fade .6s ease .42s forwards;
+  }
+
+  h1{
+    font-family:"Barlow Condensed";
+    font-weight:700;
+    font-size:clamp(38px,7vw,68px);
+    line-height:.94;
+    letter-spacing:.005em;
+    margin:0;
+    text-transform:uppercase;
+    opacity:0;
+    transform:translateY(8px);
+    animation:rise .6s cubic-bezier(.2,.7,.2,1) .3s forwards;
+  }
+
+  h1 .thin{
+    font-weight:700;
+    color:var(--orange-bright);
+  }
+
+  .rule{
+    height:4px;
+    width:0;
+    max-width:82vw;
+    background:var(--orange-bright);
+    border-radius:3px;
+    margin:12px 0 15px;
+    animation:draw .8s cubic-bezier(.2,.7,.2,1) .55s forwards;
+  }
+
+  .lede{
+    margin:0;
+    width:100%;
+    max-width:none;
+    color:#e6eefb;
+    font-size:12px;
+    line-height:1.55;
+    font-style:italic;
+    white-space:normal;
+    opacity:0;
+    animation:fade .6s ease .66s forwards;
+  }
+
+  .waves{
+    position:absolute;
+    left:0;
+    right:0;
+    bottom:-2px;
+    height:58px;
+    z-index:1;
+    opacity:.5;
+  }
+
+  .waves path{
+    fill:rgba(255,255,255,.06);
+  }
+
+  /* ---------- Tools ---------- */
+
+  .section-label{
+    display:flex;
+    align-items:center;
+    gap:14px;
+    margin:30px 2px 16px;
+    font-family:"Barlow Semi Condensed";
+    font-weight:600;
+    letter-spacing:.2em;
+    text-transform:uppercase;
+    font-size:12.5px;
+    color:var(--muted);
+  }
+
+  .section-label::after{
+    content:"";
+    flex:1;
+    height:1px;
+    background:var(--line);
+  }
+
+  .grid{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:16px;
+    padding-bottom:8px;
+  }
+
+  /* ---------- Cards ---------- */
+
+  .card{
+    position:relative;
+    display:flex;
+    gap:18px;
+    align-items:flex-start;
+    background:var(--card);
+    border:1px solid var(--line);
+    border-radius:14px;
+    padding:22px 22px 22px 24px;
+    overflow:hidden;
+    isolation:isolate;
+    box-shadow:var(--shadow);
+    transition:
+      transform .22s cubic-bezier(.2,.7,.2,1),
+      box-shadow .22s ease,
+      border-color .22s ease;
+    opacity:0;
+    transform:translateY(12px);
+  }
+
+  .card::before{
+    content:"";
+    position:absolute;
+    left:0;
+    top:0;
+    bottom:0;
+    width:4px;
+    background:var(--blue);
+    transition:background .22s ease,width .22s ease;
+    z-index:3;
+  }
+
+  .card::after{
+    content:"";
+    position:absolute;
+    left:0;
+    right:0;
+    bottom:0;
+    height:0;
+    z-index:0;
+    background:linear-gradient(
+      0deg,
+      rgba(242,101,34,.16),
+      rgba(242,101,34,.02)
+    );
+    transition:height .34s cubic-bezier(.2,.7,.2,1);
+  }
+
+  .card:hover,
+  .card:focus-visible,
+  .card:focus-within{
+    transform:translateY(-4px);
+    box-shadow:var(--shadow-hi);
+    border-color:#c7d3e6;
+    outline:none;
+  }
+
+  .card:hover::before,
+  .card:focus-visible::before,
+  .card:focus-within::before{
+    background:var(--orange);
+    width:5px;
+  }
+
+  .card:hover::after,
+  .card:focus-visible::after,
+  .card:focus-within::after{
+    height:100%;
+  }
+
+  .ico{
+    flex:0 0 auto;
+    width:52px;
+    height:52px;
+    border-radius:12px;
+    z-index:2;
+    display:grid;
+    place-items:center;
+    background:linear-gradient(135deg,#eef3fb,#e2eaf7);
+    border:1px solid #d7e1f2;
+    color:var(--blue);
+    transition:
+      transform .22s cubic-bezier(.2,.7,.2,1),
+      background .22s ease,
+      color .22s ease,
+      border-color .22s ease;
+  }
+
+  .ico svg{
+    width:26px;
+    height:26px;
+    display:block;
+  }
+
+  .card:hover .ico,
+  .card:focus-visible .ico,
+  .card:focus-within .ico{
+    transform:translateY(-2px) scale(1.03);
+    background:linear-gradient(135deg,var(--orange),var(--orange-deep));
+    border-color:var(--orange-deep);
+    color:#fff;
+  }
+
+  .body{
+    z-index:2;
+    min-width:0;
+  }
+
+  .card h2{
+    font-family:"Barlow Condensed";
+    font-weight:700;
+    text-transform:uppercase;
+    letter-spacing:.01em;
+    font-size:23px;
+    line-height:1.05;
+    margin:2px 0 6px;
+    color:var(--ink);
+  }
+
+  .card p{
+    margin:0;
+    color:var(--muted);
+    font-size:13.5px;
+    line-height:1.5;
+  }
+
+  .go{
+    display:inline-flex;
+    align-items:center;
+    gap:7px;
+    margin-top:13px;
+    font-family:"Barlow Semi Condensed";
+    font-weight:600;
+    letter-spacing:.08em;
+    text-transform:uppercase;
+    font-size:12.5px;
+    color:var(--blue);
+    transition:color .2s ease,gap .2s ease;
+  }
+
+  .go-row{
+    display:flex;
+    flex-wrap:wrap;
+    align-items:center;
+    column-gap:22px;
+  }
+
+  .go:focus-visible{
+    outline:2px solid var(--orange);
+    outline-offset:4px;
+    border-radius:2px;
+  }
+
+  .go:hover,
+  .go:focus-visible{
+    font-weight:700;
+  }
+
+  .go svg{
+    width:15px;
+    height:15px;
+    transition:transform .2s ease;
+  }
+
+  .card:hover .go,
+  .card:focus-visible .go,
+  .card:focus-within .go{
+    color:var(--orange-deep);
+    gap:11px;
+  }
+
+  .card:hover .go svg,
+  .card:focus-visible .go svg,
+  .card:focus-within .go svg{
+    transform:translateX(3px);
+  }
+
+  .magazine-card .magazine-main-link{
+    position:absolute;
+    inset:0;
+    z-index:1;
+    border-radius:inherit;
+  }
+
+  .magazine-card .magazine-main-link:focus-visible{
+    outline:2px solid var(--orange);
+    outline-offset:-5px;
+  }
+
+  .magazine-card::before,
+  .magazine-card::after{
+    pointer-events:none;
+  }
+
+  .magazine-card .ico,
+  .magazine-card .body{
+    pointer-events:none;
+  }
+
+  .magazine-card .go{
+    position:relative;
+    z-index:4;
+    pointer-events:auto;
+  }
+
+  /* ---------- Footer ---------- */
+
+  footer{
+    margin:26px 0 40px;
+    padding-top:18px;
+    border-top:1px solid var(--line);
+    display:flex;
+    flex-wrap:wrap;
+    gap:8px 16px;
+    align-items:center;
+    justify-content:space-between;
+    color:var(--muted);
+    font-size:12px;
+  }
+
+  footer .foot-left{
+    display:flex;
+    flex-direction:column;
+    gap:3px;
+    line-height:1.35;
+  }
+
+  footer .tf{
+    font-family:"Barlow Semi Condensed";
+    font-weight:600;
+    letter-spacing:.12em;
+    text-transform:uppercase;
+    color:var(--blue);
+  }
+
+  footer .name{
+    color:var(--muted);
+    font-size:12px;
+  }
+
+  /* ---------- Staggered card entrance ---------- */
+
+  .card:nth-of-type(1){
+    animation:rise .55s cubic-bezier(.2,.7,.2,1) .70s forwards;
+  }
+
+  .card:nth-of-type(2){
+    animation:rise .55s cubic-bezier(.2,.7,.2,1) .80s forwards;
+  }
+
+  .card:nth-of-type(3){
+    animation:rise .55s cubic-bezier(.2,.7,.2,1) .90s forwards;
+  }
+
+  .card:nth-of-type(4){
+    animation:rise .55s cubic-bezier(.2,.7,.2,1) 1.0s forwards;
+  }
+
+  .card:nth-of-type(5){
+    animation:rise .55s cubic-bezier(.2,.7,.2,1) 1.1s forwards;
+  }
+
+  .card:nth-of-type(6){
+    animation:rise .55s cubic-bezier(.2,.7,.2,1) 1.2s forwards;
+  }
+
+  @keyframes drop{
+    to{opacity:1;transform:translateY(0)}
+  }
+
+  @keyframes rise{
+    to{opacity:1;transform:translateY(0)}
+  }
+
+  @keyframes fade{
+    to{opacity:1}
+  }
+
+  @keyframes draw{
+    to{width:352px}
+  }
+
+  @media (max-width:900px){
+    .lede{
+      white-space:normal;
+      max-width:100%;
+    }
+  }
+
+  @media (max-width:720px){
+    .grid{
+      grid-template-columns:1fr;
+    }
+
+    .band .inner{
+      padding:23px 22px 21px;
+    }
+
+    .lede{
+      font-size:14px;
+      line-height:1.5;
+      white-space:normal;
+    }
+
+    .agency .s{
+      display:none;
+    }
+
+    .crest img{
+      height:46px;
+    }
+  }
+
+  @media (prefers-reduced-motion:reduce){
+    *{
+      animation:none!important;
+    }
+
+    .masthead,
+    .band,
+    .eyebrow,
+    h1,
+    .lede,
+    .card{
+      opacity:1;
+      transform:none;
+    }
+
+    .rule{
+      width:352px;
+    }
+  }
+</style>
+</head>
+
+<body>
+
+<div id="bg" aria-hidden="true"></div>
+
+<div class="wrap">
+
+  <!-- Masthead -->
+
+  <div class="masthead">
+    <div class="crest">
+
+      <img
+        src="https://lh3.googleusercontent.com/d/15r0-MS1qhh_cizTu42-x8KjHpsMvKzmu"
+        alt="DPWH logo"
+        onerror="this.style.display='none'"
+      >
+
+      <span class="sep"></span>
+
+      <div class="agency">
+        <div class="r">Department of Public Works and Highways</div>
+        <div class="s">Oplan Kontra Baha Task Force</div>
+      </div>
+
+    </div>
+  </div>
+
+
+  <!-- Hero band -->
+
+  <div class="band">
+
+    <div class="inner">
+
+      <p class="eyebrow">
+        Accomplishment Monitoring
+      </p>
+
+      <h1>
+        Oplan <span class="thin">Kontra</span> Baha
+      </h1>
+
+      <div class="rule"></div>
+
+<p class="lede">
+  "<strong>Oplan Kontra Baha (OKB)</strong> is a non-structural flood mitigation initiative of the Department of Public Works and Highways (DPWH) aimed at restoring and maintaining the flow of waterways through desilting, dredging, clearing, and removal of obstructions, in coordination with local government units and other stakeholders. It seeks to reduce the frequency, depth, and duration of flooding by improving the capacity of rivers, creeks, canals, and drainage systems to carry water."
+</p>
+
+    </div>
+
+    <svg
+      class="waves"
+      viewBox="0 0 1080 74"
+      preserveAspectRatio="none"
+      aria-hidden="true"
+    >
+      <path d="M0,40 C180,10 360,70 540,40 C720,10 900,70 1080,40 L1080,74 L0,74 Z"></path>
+      <path d="M0,52 C200,28 380,74 560,50 C740,26 900,72 1080,50 L1080,74 L0,74 Z" opacity=".7"></path>
+    </svg>
+
+  </div>
+
+
+  <div class="section-label">
+    Choose a tool
+  </div>
+
+
+  <!-- Tools -->
+
+  <div class="grid">
+
+
+    <!-- Overview -->
+
+    <a
+      class="card"
+      href="https://oplankontrabaha.github.io/accomplishments/"
+      target="_blank"
+      rel="noopener"
+    >
+
+      <div class="ico">
+
+        <svg
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="1.9"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        >
+          <path d="M3 3v18h18"/>
+          <rect x="7" y="11" width="3" height="7"/>
+          <rect x="12.5" y="7" width="3" height="11"/>
+          <rect x="18" y="13" width="3" height="5"/>
+        </svg>
+
+      </div>
+
+      <div class="body">
+
+        <h2>
+          Overview of Accomplishments
+        </h2>
+
+        <p>
+          See the numbers and figures representing the accomplishments of different regions and sites.
+        </p>
+
+        <span class="go">
+          Open dashboard
+
+          <svg
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2.2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <path d="M5 12h14M13 6l6 6-6 6"/>
+          </svg>
+
+        </span>
+
+      </div>
+
+    </a>
+
+
+    <!-- Project Magazine -->
+
+    <article class="card magazine-card">
+
+      <a
+        class="magazine-main-link"
+        href="https://oplankontrabaha.github.io/magazine/"
+        target="_blank"
+        rel="noopener"
+        aria-label="Explore Project Magazine"
+      ></a>
+
+      <div class="ico">
+
+        <svg
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="1.9"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        >
+          <path d="M4 4.5h6.5A3.5 3.5 0 0 1 14 8v12a3.5 3.5 0 0 0-3.5-3.5H4z"/>
+          <path d="M20 4.5h-6.5A3.5 3.5 0 0 0 10 8"/>
+          <path d="M20 4.5v12h-6.5A3.5 3.5 0 0 0 10 20"/>
+          <path d="M7 8h4M7 11h4"/>
+          <path d="M15 8h2M15 11h2"/>
+        </svg>
+
+      </div>
+
+      <div class="body">
+
+        <h2>
+          Project Magazine
+        </h2>
+
+        <p>
+          Discover the journey of transformation and witness the progress from its initial concept to its exceptional final form, revealing the story behind every milestone and achievement.
+        </p>
+
+        <div class="go-row">
+          <a
+            class="go"
+            href="https://oplankontrabaha.github.io/magazine/"
+            target="_blank"
+            rel="noopener"
+          >
+            Explore magazine
+
+            <svg
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2.2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <path d="M5 12h14M13 6l6 6-6 6"/>
+            </svg>
+          </a>
+
+          <a
+            class="go"
+            href="https://oplankontrabaha.github.io/magazine/?page=2"
+            target="_blank"
+            rel="noopener"
+          >
+            Generate Presentation
+
+            <svg
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2.2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <path d="M5 12h14M13 6l6 6-6 6"/>
+            </svg>
+          </a>
+        </div>
+
+      </div>
+
+    </article>
+
+
+    <!-- Submit Output and Sketch -->
+
+    <a
+      class="card"
+      href="https://oplankontrabaha.github.io/sketcher/"
+      target="_blank"
+      rel="noopener"
+    >
+
+      <div class="ico">
+
+        <svg
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="1.9"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        >
+          <path d="M9 3 3 6v15l6-3 6 3 6-3V3l-6 3-6-3z"/>
+          <path d="M9 3v15M15 6v15"/>
+          <path d="M12.5 13.5 16 10l1.6 1.6-3.5 3.5-2 .4z"/>
+        </svg>
+
+      </div>
+
+      <div class="body">
+
+        <h2>
+          Submit Output and Sketch
+        </h2>
+
+        <p>
+          Submit how many cubic meters were accomplished, then draw your accomplished areas directly on the map.
+        </p>
+
+        <span class="go">
+          Submit and sketch
+
+          <svg
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2.2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <path d="M5 12h14M13 6l6 6-6 6"/>
+          </svg>
+
+        </span>
+
+      </div>
+
+    </a>
+
+
+    <!-- Submit Site Photos -->
+
+    <a
+      class="card"
+      href="https://oplankontrabaha.github.io/photosubmission/"
+      target="_blank"
+      rel="noopener"
+    >
+
+      <div class="ico">
+
+        <svg
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="1.9"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        >
+          <path d="M3 7h4l1.5-2h7L17 7h4v13H3z"/>
+          <circle cx="12" cy="13" r="4"/>
+        </svg>
+
+      </div>
+
+      <div class="body">
+
+        <h2>
+          Submit Site Photos
+        </h2>
+
+        <p>
+          Upload high-definition photos in real time without the need to mark dates. This tool automatically collects the photo capture date and geotag.
+        </p>
+
+        <span class="go">
+          Upload photos
+
+          <svg
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2.2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <path d="M5 12h14M13 6l6 6-6 6"/>
+          </svg>
+
+        </span>
+
+      </div>
+
+    </a>
+
+
+    <!-- Register a Waterway -->
+
+    <a
+      class="card"
+      href="https://oplankontrabaha.github.io/registration/"
+      target="_blank"
+      rel="noopener"
+    >
+
+      <div class="ico">
+
+        <svg
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="1.9"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        >
+          <path d="M3 8c2.5 0 2.5 2 5 2s2.5-2 5-2 2.5 2 5 2M3 14c2.5 0 2.5 2 5 2s2.5-2 5-2"/>
+          <path d="M18 13v7M14.5 16.5H21.5" transform="translate(-1 1)"/>
+        </svg>
+
+      </div>
+
+      <div class="body">
+
+        <h2>
+          Register a Waterway
+        </h2>
+
+        <p>
+          Add a new drainage or waterway to the system so it can be monitored and reported.
+        </p>
+
+        <span class="go">
+          Add waterway
+
+          <svg
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2.2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <path d="M5 12h14M13 6l6 6-6 6"/>
+          </svg>
+
+        </span>
+
+      </div>
+
+    </a>
+
+
+    <!-- 24/7 Drainage Cleaning Reporting -->
+
+    <a
+      class="card"
+      href="https://oplankontrabaha.github.io/247DrainageCleaning/"
+      target="_blank"
+      rel="noopener"
+    >
+
+      <div class="ico">
+
+        <svg
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="1.9"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        >
+          <circle cx="12" cy="12" r="9"/>
+          <path d="M12 7.5V12l3 2"/>
+        </svg>
+
+      </div>
+
+      <div class="body">
+
+        <h2>
+          24/7 Drainage Cleaning Reporting
+        </h2>
+
+        <p>
+          Log clearing operations around the clock, day or night, as they happen on the ground.
+        </p>
+
+        <span class="go">
+          File a report
+
+          <svg
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2.2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <path d="M5 12h14M13 6l6 6-6 6"/>
+          </svg>
+
+        </span>
+
+      </div>
+
+    </a>
+
+  </div>
+
+
+  <!-- Footer -->
+
+  <footer>
+
+    <div class="foot-left">
+
+      <span class="tf">
+        Oplan Kontra Baha Task Force
+      </span>
+
+      <span class="name">
+         
+      </span>
+
+    </div>
+
+    <span>
+      Department of Public Works and Highways · 2026
+    </span>
+
+  </footer>
+
+</div>
+
+
+<script>
+(function(){
+
+  if(
+    window.matchMedia &&
+    window.matchMedia('(prefers-reduced-motion: reduce)').matches
+  ){
+    return;
+  }
+
+  var OKB =
+    "https://lh3.googleusercontent.com/d/10xNS0UasomLq_n0sWmRpd2ioaGwzB97j";
+
+  var DPWH =
+    "https://lh3.googleusercontent.com/d/15r0-MS1qhh_cizTu42-x8KjHpsMvKzmu";
+
+  var LOGOS = [OKB, DPWH];
+
+  var bg = document.getElementById('bg');
+
+  if(!bg){
+    return;
+  }
+
+  var TARGET = 18;
+  var LIFE   = 10000;
+  var FADE   = 1300;
+  var MAXOP  = 0.10;
+
+  var parts = [];
+
+  function rnd(a,b){
+    return a + Math.random()*(b-a);
+  }
+
+  function vp(){
+    return {
+      w:window.innerWidth,
+      h:window.innerHeight
+    };
+  }
+
+  function sizeRange(){
+
+    var v = vp();
+
+    var mx = Math.max(
+      58,
+      Math.min(
+        150,
+        Math.min(v.w,v.h)*0.20
+      )
+    );
+
+    return {
+      min:mx*0.55,
+      max:mx
+    };
+  }
+
+  function activeCount(){
+
+    var v = vp();
+    var sr = sizeRange();
+
+    var cap = Math.floor(
+      (v.w*v.h) /
+      (sr.max*sr.max*2.4)
+    );
+
+    return Math.max(
+      4,
+      Math.min(TARGET,cap)
+    );
+  }
+
+  function place(o){
+
+    var v = vp();
+    var sr = sizeRange();
+
+    for(var attempt=0;attempt<40;attempt++){
+
+      o.base = rnd(sr.min,sr.max);
+
+      var r = o.base*0.62;
+
+      var x = rnd(r,v.w-r);
+      var y = rnd(r,v.h-r);
+
+      var ok = true;
+
+      for(var k=0;k<parts.length;k++){
+
+        var p = parts[k];
+
+        if(p===o || p.x==null){
+          continue;
+        }
+
+        var pr =
+          (p.size ? p.size/2 : p.base/2) +
+          r;
+
+        var dx = x-p.x;
+        var dy = y-p.y;
+
+        if(dx*dx + dy*dy < pr*pr){
+          ok = false;
+          break;
+        }
+      }
+
+      if(ok){
+        o.x = x;
+        o.y = y;
+        return;
+      }
+    }
+
+    o.x = rnd(o.base,v.w-o.base);
+    o.y = rnd(o.base,v.h-o.base);
+  }
+
+  function seed(o,now){
+
+    o.el.src =
+      LOGOS[
+        (Math.random()*LOGOS.length)|0
+      ];
+
+    place(o);
+
+    var sp = rnd(0.16,0.40);
+    var ang = rnd(0,Math.PI*2);
+
+    o.vx = Math.cos(ang)*sp;
+    o.vy = Math.sin(ang)*sp;
+
+    o.phase = rnd(0,Math.PI*2);
+    o.bSpeed = rnd(0.0006,0.0012);
+    o.amp = rnd(0.08,0.16);
+
+    o.born = now;
+    o.age = 0;
+    o.size = o.base;
+    o.r = o.base/2;
+
+    return o;
+  }
+
+  var t0 =
+    (
+      window.performance &&
+      performance.now
+    )
+    ? performance.now()
+    : Date.now();
+
+  var want = activeCount();
+
+  for(var i=0;i<want;i++){
+
+    var img = document.createElement('img');
+
+    img.className = 'floaty';
+    img.alt = '';
+
+    img.onerror = function(){
+      this.style.visibility = 'hidden';
+    };
+
+    bg.appendChild(img);
+
+    var o = {
+      el:img,
+      x:null
+    };
+
+    parts.push(o);
+
+    seed(
+      o,
+      t0-(i*(LIFE/want))
+    );
+  }
+
+  function frame(now){
+
+    var v = vp();
+    var i,j;
+
+    /* Advance logos */
+
+    for(i=0;i<parts.length;i++){
+
+      var o = parts[i];
+
+      o.age = now-o.born;
+
+      if(o.age >= LIFE){
+        seed(o,now);
+      }
+
+      var scale =
+        1 +
+        o.amp *
+        Math.sin(
+          o.phase +
+          o.age*o.bSpeed
+        );
+
+      o.size = o.base*scale;
+      o.r = o.size/2;
+
+      o.x += o.vx;
+      o.y += o.vy;
+    }
+
+    /* Logo-to-logo collisions */
+
+    for(i=0;i<parts.length;i++){
+
+      var A = parts[i];
+
+      for(j=i+1;j<parts.length;j++){
+
+        var B = parts[j];
+
+        var dx = B.x-A.x;
+        var dy = B.y-A.y;
+
+        var min = A.r+B.r;
+        var d2 = dx*dx+dy*dy;
+
+        if(d2>0 && d2<min*min){
+
+          var d = Math.sqrt(d2);
+          var nx = dx/d;
+          var ny = dy/d;
+          var overlap = min-d;
+
+          A.x -= nx*overlap*0.5;
+          A.y -= ny*overlap*0.5;
+
+          B.x += nx*overlap*0.5;
+          B.y += ny*overlap*0.5;
+
+          var p =
+            (A.vx-B.vx)*nx +
+            (A.vy-B.vy)*ny;
+
+          if(p>0){
+
+            A.vx -= p*nx;
+            A.vy -= p*ny;
+
+            B.vx += p*nx;
+            B.vy += p*ny;
+          }
+        }
+      }
+    }
+
+    /* Wall collisions and rendering */
+
+    for(i=0;i<parts.length;i++){
+
+      var q = parts[i];
+      var r = q.r;
+
+      if(q.x<r){
+
+        q.x=r;
+        q.vx=Math.abs(q.vx);
+
+      }else if(q.x>v.w-r){
+
+        q.x=v.w-r;
+        q.vx=-Math.abs(q.vx);
+      }
+
+      if(q.y<r){
+
+        q.y=r;
+        q.vy=Math.abs(q.vy);
+
+      }else if(q.y>v.h-r){
+
+        q.y=v.h-r;
+        q.vy=-Math.abs(q.vy);
+      }
+
+      var fin =
+        Math.min(
+          1,
+          q.age/FADE
+        );
+
+      var fout =
+        Math.min(
+          1,
+          (LIFE-q.age)/FADE
+        );
+
+      q.el.style.width =
+        q.size+'px';
+
+      q.el.style.opacity =
+        MAXOP *
+        Math.min(
+          fin,
+          fout
+        );
+
+      q.el.style.transform =
+        'translate(' +
+        (q.x-r) +
+        'px,' +
+        (q.y-r) +
+        'px)';
+    }
+
+    requestAnimationFrame(frame);
+  }
+
+  requestAnimationFrame(frame);
+
+})();
+</script>
+
+</body>
+</html>
